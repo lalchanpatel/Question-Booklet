@@ -1,0 +1,59 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block title %} Index {% endblock %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block body %}
+        <div class="left" style="width: 70%; float:left; background-color:pink;">
+            <table border="1px" width="100%" style="margin-top: 20px;">
+                    <tr>
+                        <td><h3>S. No.</h3></td>
+                        <td> <h3>Question Title</h3></td>
+                        <td> <h3>Question Approval</h3></td>
+                    </tr>
+                    {% for q in ques %}
+                        <tr>
+                            <td style="padding: 10px;"> {{q.Question_number}}</td>
+                            <td style="padding: 10px;" > <a href="/problem/{{ q.Question_id }}">{{q.Question_title}}</a></td>
+                            <td style="padding: 10px;" > {{q.Question_approval}} </td>
+                        </tr>
+                    {% endfor %}
+
+<!--                    <br><hr><nobr style="padding-left: 10px;"> <b>S No.</b></nobr>-->
+<!--                    <nobr style="padding-left: 50px; padding-top:40px; weight: bold;"><b> Question </b></nobr>-->
+
+
+<!--                        <p>{% for i in ques %} {% ifchanged i.Question_id.Question_title %}</p>-->
+<!--                        <hr>-->
+<!--                        <nobr style="padding-left: 10px;">{{ i.Question_id.Question_number }}. </nobr>-->
+<!--                        <nobr style="padding-left: 50px;" ><a href="/problem/{{ i.Question_id.Question_id }}">{{ i.Question_id.Question_title }} </a></nobr>-->
+<!--                        <nobr> {{ i.Question_id.Question_approval }} </nobr>-->
+<!--                        <nobr>{% endifchanged %}</nobr>-->
+
+<!--                        <nobr style=" padding-right: 15px;float: right;"> <button>{{ i.Topic_id.Topic_name }} </button></nobr>-->
+
+<!--                        <nobr>{% endfor %}</nobr>-->
+
+                </table>
+        </div>
+        <div class="right" style="width: 30%; float:left; background-color:orange;">
+
+            <form id="updatedp" method="post" action="{% url 'dpupdate'%}" enctype="multipart/form-data" > {% csrf_token %}
+                <div style="" class="custom-file">
+                    <input type="file" class="custom-file-input" id="dp" name="dp">
+                </div>
+                <div style=" width: 100%; height:350px; position: relative;">
+                    <img id="profilepic" src="{{ user.Image.url }}" style=" position:absolute; width:65%; height:80%; border-radius:100%; margin-left:16%; margin-top:10%;">
+                    <label style="position: absolute;margin-top:58%;; margin-left:68%;" for="dp"><i class="fa fa-camera" style="padding: 70%; border-radius:100%; background-color: grey; color: black; "></i></label>
+                </div>
+                <font style="margin-left:16%; font-size: 150%;"> Name &nbsp;   : {{ user.FName }}{{ user.LName }}</font><br>
+                <font style="margin-left:16%; font-size: 150%;"> Email &nbsp;  : {{ user.Email }}</font><br>
+                <font style="margin-left:16%; font-size: 150%;"> Mobile        : {{ user.Mobile }}</font><br>
+                <input type="submit" id="btn" hidden>
+            </form>
+
+        </div>
+{% endblock %}

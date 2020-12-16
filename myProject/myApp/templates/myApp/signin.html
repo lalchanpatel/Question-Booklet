@@ -1,0 +1,27 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block title %} Index {% endblock %}
+{% block style %}
+
+    input, .anx{
+        padding: 10px;
+        width: 350px;
+        margin-left: 300px;
+        margin-top: 30px;
+    }
+
+{% endblock %}
+
+{% block body %}
+        <form method="post" action="{% url 'login' %}"> {% csrf_token %}
+            <div class="left" style="width: 70%; float:left; background-color:pink;">
+                <input type="email" placeholder="Enter your e-mail id" name="username"><br>
+                <input type="password" placeholder="Enter your password" name="password"><br>
+                <a class="anx" href="#" style="color: red;"> forgot password? </a>
+                <input type="submit" value="login"><br><br>
+            </div>
+        </form>
+<!--        <div class="right" style="width: 30%; float:left; background-color:orange;">-->
+<!--            dfhgjkl-->
+<!--        </div>-->
+{% endblock %}

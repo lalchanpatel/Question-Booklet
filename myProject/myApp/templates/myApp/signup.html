@@ -1,0 +1,38 @@
+{% extends 'myApp/base.html' %}
+{% load static %}
+{% block title %} Sign up {% endblock %}
+
+{% block style %}
+    .t{
+        padding: 10px;
+        width: 350px;
+        margin-left: 300px;
+        margin-top: 30px;
+    }
+{% endblock %}
+
+{% block body %}
+        <form method="post" action="{% url 'signup' %}" enctype="multipart/form-data"> {% csrf_token %}
+            <div class="left" style="width: 70%; float:left; background-color:pink;">
+                <input class="t" type="text" name="fname" placeholder="First name" value="{{ f_n }}">
+                <input class="t" type="text" name="lname" placeholder="Last name" value="{{ l_n }}"><br>
+                <input class="t" type="email" placeholder="Enter your e-mail id" name="email" value="{{ mail }}"><br>
+                <input class="t" type="text" placeholder="Enter your Mobile no." name="mobile" value="{{ m_no }}"><br>
+                <input class="t" type="password" placeholder="Enter your password" name="password" ><br>
+                <input class="t" type="password" placeholder="Confirm your password" name="confpassword" ><br>
+               <div style="width: 350px; margin-left: 300px; margin-top: 30px; " class="custom-file mb-3" >
+                  <input type="file" class="custom-file-input" id="customFile" name="profile_pic" value="{{ img }}">
+                   {% if img %}
+                    <label class="custom-file-label" for="customFile">{{ img }} </label>
+                   {% else %}
+                    <label class="custom-file-label" for="customFile">upload profile picture </label>
+                   {% endif %}
+                </div><br>
+                <button class="t" type="submit" value="sign up">sign up</button><br><br>
+            </div>
+        </form>
+        <div class="right" style="width: 30%; float:left; background-color:orange;">
+            dfhgjkl
+        </div>
+
+{% endblock %}
